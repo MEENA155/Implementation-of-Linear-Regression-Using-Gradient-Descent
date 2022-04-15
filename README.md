@@ -24,35 +24,46 @@ Program to implement the linear regression using gradient descent.
 Developed by: S.Meena
 RegisterNumber:  212221240028
 import numpy as np
-import pandas as pd
+import pandas as pd 
 import matplotlib.pyplot as plt
-dataset = pd.read_csv('student_scores.csv')
-dataset.head()
-X=dataset.iloc[:,:-1].values
-Y=dataset.iloc[:,1].values
-from sklearn.model_selection import train_test_split
-X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size = 1/3,random_state = 0)
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train,Y_train)
-Y_pred = regressor.predict(X_test)
-plt.scatter(X_train,Y_train,color="purple")
-plt.plot(X_train,regressor.predict(X_train),color="green")
-plt.title("Hours vs Scores (Training Set)")
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
-plt.scatter(X_test,Y_test,color="brown")
-plt.plot(X_train,regressor.predict(X_train),color="blue") 
-plt.xlabel("Hours")
-plt.ylabel("Scores")
-plt.show()
+data = pd.read_csv("student_scores.csv")
+data.head()
+data.isnull().sum()
+x = data.hours
+x.head()
+y = data.scores
+y.head()
+n= len(x)
+m = 0
+c = 0
+L = 0.001
+loss = []
+for i in range(10000):
+  Ypred = m*x+c
+  MSE = (1/n) * sum((ypred -y)*2)
+  dm = (2/m)* sum (x(Ypred - y))
+  dc = (2/m)* sum (ypred - y)
+  c = c-l*dc
+  m = m-l*dm
+  loss.append(MSE)
+  #print(m)
+print(m,c)
+y_pred = m*x+c 
+plt.scatter(x,y,color ='black')
+plt.plot(x,y_pred)
+plt.Xlable("study hours")
+plt.ylable("score")
+plt.title("study hours vs scores")
+plt.plot(loss)
+plt.xlable("iteration")
+plt.ylable("loss")
 */
 ```
 
 ## Output:
-![Screenshot (17)](https://user-images.githubusercontent.com/94677128/162006790-e3eb2859-6e34-4ac0-b4b4-c82da12f2ddd.png)
-![Screenshot (18)](https://user-images.githubusercontent.com/94677128/162006996-b34573b3-ab34-4b0e-851f-295923bb3238.png)
+![Screenshot (30)](https://user-images.githubusercontent.com/94677128/163543296-af66540f-6b43-4c33-a9f6-3b85fbde3f33.png)
+![Screenshot (31)](https://user-images.githubusercontent.com/94677128/163543421-0ce4e471-4810-4741-92dd-890994bc8936.png)
+
 
 
 
